@@ -1,0 +1,14 @@
+.navbar-collapse{
+    justify-content: flex-end;
+}
+.cart-icon{
+    margin-top: 30px;
+    padding: 10px;
+}
+.py-5{
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+}
+.bg-custom {
+    background-color: #28a745;
+    color: #fff}
