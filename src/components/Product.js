@@ -54,6 +54,7 @@ const db = getFirestore();
           <img src="product1.jpg" class="card-img-top" alt="Product 1"/>
           <div class="card-body">
             <h5 class="card-title">{product.ProductName}</h5>
+            <img src={product.image} alt="product image here"/>
             <div><b>Company:</b>{product.ProductCompany}</div>
             <div><b>Details:</b>{product.Productdetails}</div>
             <div><b>Price:</b>{product.ProductPrice}</div>

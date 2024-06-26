@@ -5,16 +5,18 @@ import "react-phone-input-2/lib/style.css";
 import { TextField } from "@mui/material";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { auth } from "../firebase";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [phone, setphone] = useState("");
   const [user, setuser] = useState(null);
   const [otp, setotp] = useState("");
+  const navigate = useNavigate()
 
   const sendOtp = async () => {
     try {
       const recaptcha = new RecaptchaVerifier(auth, "recaptcha", {});
-      const confirmation = signInWithPhoneNumber(auth, phone, recaptcha);
+      const confirmation =await signInWithPhoneNumber(auth, phone, recaptcha);
       console.log(confirmation);
       setuser(confirmation);
     } catch (error) {
@@ -24,10 +26,11 @@ export default function Login() {
 
   const verifyOtp = async () => {
     try {
-      await user.confirm({ otp });
+      await user.confirm(otp);
     } catch (error) {
       console.log(error);
     }
+    navigate("/")
   };
 
   return (
