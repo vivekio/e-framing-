@@ -7,6 +7,7 @@ import Contactus from "./components/Contactus"
 import Login from "./components/Login";
 import Cart from "./components/Cart";
 import Foote from "./components/Foote";
+
 // import { firebaseConfig } from './firebase.config';
 function App() {
   return (

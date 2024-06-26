@@ -6,6 +6,7 @@ import { TextField } from "@mui/material";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { auth } from "../firebase";
 import { useNavigate } from "react-router-dom";
+import { addDoc, collection, getFirestore } from "firebase/firestore";
 
 export default function Login() {
   const [phone, setphone] = useState("");
@@ -25,11 +26,15 @@ export default function Login() {
   };
 
   const verifyOtp = async () => {
+    const db = getFirestore();
     try {
       await user.confirm(otp);
     } catch (error) {
       console.log(error);
     }
+    const res = await addDoc(collection(db,"Login Users"),{userPhoneNumber:phone});
+    console.log("user added", res);
+    localStorage.setItem('login',JSON.stringify(true))
     navigate("/")
   };
 

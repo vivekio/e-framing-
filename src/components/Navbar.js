@@ -3,10 +3,19 @@ import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const Navigate = useNavigate ();
+  const loginInfo = JSON.parse(localStorage.getItem('login'));
+  const isLogin = loginInfo
+  console.log(loginInfo,"login info")
+
   function Loginbtn() {
     Navigate("/Login")
     
   } 
+
+  const handleLogout=()=>{
+    localStorage.removeItem('login') 
+    Navigate('/login')
+  }
   return (
     <>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -62,11 +71,17 @@ export default function Navbar() {
                   </svg>
                 </a>
               </li>
-              <li class="nav-item">
+             { !isLogin ? <li class="nav-item">
                 <button type="button" class="btn btn-success" onClick={Loginbtn} >
                   login 
                 </button>
-              </li>
+              </li> :
+              <li class="nav-item">
+              <button type="button" class="btn btn-success" onClick={handleLogout} >
+                Logout
+              </button>
+            </li>
+              }
             </ul>
           </div>
         </div>
